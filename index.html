@@ -163,11 +163,13 @@
         
         // Calculate PT Avg safely
         const rankedPT = studentsData
-            .filter(s => s.disassembling && s.assembling && s.questioning) // only students with all 3 grades
-            .map(s => ({ 
-                name: s.name, 
-                score: ((s.disassembling + s.assembling + s.questioning) / 3).toFixed(2) 
-            }))
+            .filter(s => s.disassembling && s.assembling && s.questioning && s.diskpart) 
+
+// 2. The Calculation
+.map(s => ({ 
+    name: s.name, 
+    score: ((s.disassembling + s.assembling + s.questioning + s.diskpart) / 4).toFixed(2) 
+}))
             .sort((a, b) => b.score - a.score)
             .slice(0, 5);
 
