@@ -5,210 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12 VENUS - Performance Task & Quiz Results</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f7fafc;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .card {
-            background: #ffffff;
-            max-width: 650px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            border-top: 8px solid #9b2c2c;
-        }
-        h1 {
-            color: #2d3748;
-            font-size: 26px;
-            margin-top: 0;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-        .subtitle {
-            color: #718096;
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        label {
-            font-weight: 600;
-            color: #4a5568;
-            display: block;
-            margin-bottom: 8px;
-        }
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #cbd5e0;
-            border-radius: 8px;
-            font-size: 16px;
-            color: #2d3748;
-            background-color: #fff;
-            outline: none;
-            transition: border-color 0.2s;
-            margin-bottom: 20px;
-        }
-        select:focus {
-            border-color: #9b2c2c;
-        }
-        .results-container {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .student-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #9b2c2c;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        .section-header {
-            font-size: 14px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #718096;
-            margin: 20px 0 10px 0;
-        }
-        .grade-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            background: #fffaf0;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            border-left: 4px solid #dd6b20;
-        }
-        .grade-row.quiz-row {
-            background: #f0f4ff;
-            border-left-color: #3182ce;
-        }
-        .grade-label {
-            font-weight: 500;
-            color: #4a5568;
-        }
-        .grade-value {
-            font-weight: 700;
-            font-size: 18px;
-            color: #2d3748;
-        }
-        .text-danger {
-            color: #e53e3e;
-            font-size: 14px;
-            font-style: italic;
-        }
-        
-        /* Leaderboard Styles */
-        .divider {
-            border: 0;
-            height: 1px;
-            background: #e2e8f0;
-            margin: 35px 0 25px 0;
-        }
-        .top5-title {
-            text-align: center;
-            color: #2d3748;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .top5-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-        }
-        .top5-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            border-bottom: 1px solid #edf2f7;
-            border-radius: 6px;
-        }
-        .top5-item.highlight {
-            background-color: #ffcccc;
-            font-weight: bold;
-        }
-        .top5-item:last-child {
-            border-bottom: none;
-        }
-        .rank-medal {
-            font-size: 18px;
-            margin-right: 10px;
-            width: 25px;
-            display: inline-block;
-        }
-        .top5-name {
-            font-weight: 600;
-            color: #4a5568;
-            flex-grow: 1;
-        }
-        .top5-score {
-            font-weight: 700;
-            color: #9b2c2c;
-            background: #fed7d7;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 14px;
-        }
-        .top5-score-quiz {
-            color: #2b6cb0;
-            background: #ebf8ff;
-        }
-
-        /* Server Ranking Styles */
-        .server-cards {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        .server-card {
-            flex: 1;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-top: 4px solid #38a169;
-            border-radius: 8px;
-            padding: 15px 10px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .sc-title {
-            font-size: 11px;
-            color: #718096;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .sc-winner {
-            font-size: 14px;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 5px;
-        }
-        .sc-score {
-            font-size: 14px;
-            color: #2f855a;
-            font-weight: bold;
-        }
-        @media (max-width: 500px) {
-            .server-cards { flex-direction: column; }
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f7fafc; margin: 0; padding: 40px 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: #ffffff; max-width: 650px; width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); padding: 30px; border-top: 8px solid #9b2c2c; }
+        h1 { color: #2d3748; font-size: 26px; margin-top: 0; margin-bottom: 5px; text-align: center; }
+        .subtitle { color: #718096; font-size: 14px; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+        label { font-weight: 600; color: #4a5568; display: block; margin-bottom: 8px; }
+        select { width: 100%; padding: 12px; border: 2px solid #cbd5e0; border-radius: 8px; font-size: 16px; color: #2d3748; background-color: #fff; outline: none; transition: border-color 0.2s; margin-bottom: 20px; }
+        select:focus { border-color: #9b2c2c; }
+        .results-container { display: none; animation: fadeIn 0.4s ease-in-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .student-title { font-size: 20px; font-weight: 700; color: #9b2c2c; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 2px solid #e2e8f0; }
+        .section-header { font-size: 14px; text-transform: uppercase; font-weight: 700; color: #718096; margin: 20px 0 10px 0; }
+        .grade-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: #fffaf0; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #dd6b20; }
+        .grade-row.quiz-row { background: #f0f4ff; border-left-color: #3182ce; }
+        .grade-label { font-weight: 500; color: #4a5568; }
+        .grade-value { font-weight: 700; font-size: 18px; color: #2d3748; }
+        .text-danger { color: #e53e3e; font-size: 14px; font-style: italic; }
+        .divider { border: 0; height: 1px; background: #e2e8f0; margin: 35px 0 25px 0; }
+        .top5-title { text-align: center; color: #2d3748; font-size: 18px; margin-bottom: 15px; }
+        .top5-list { list-style: none; padding: 0; margin: 0 0 30px 0; }
+        .top5-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; border-bottom: 1px solid #edf2f7; border-radius: 6px; }
+        .top5-item.highlight { background-color: #ffcccc; font-weight: bold; }
+        .rank-medal { font-size: 18px; margin-right: 10px; width: 25px; display: inline-block; }
+        .top5-name { font-weight: 600; color: #4a5568; flex-grow: 1; }
+        .top5-score { font-weight: 700; color: #9b2c2c; background: #fed7d7; padding: 4px 10px; border-radius: 999px; font-size: 14px; }
+        .top5-score-quiz { color: #2b6cb0; background: #ebf8ff; }
+        .server-cards { display: flex; gap: 10px; margin-bottom: 30px; }
+        .server-card { flex: 1; background: #f8fafc; border: 1px solid #e2e8f0; border-top: 4px solid #38a169; border-radius: 8px; padding: 15px 10px; text-align: center; }
+        .sc-title { font-size: 11px; color: #718096; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+        .sc-winner { font-size: 14px; font-weight: 700; color: #2d3748; margin-bottom: 5px; }
+        .sc-score { font-size: 14px; color: #2f855a; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -224,68 +51,32 @@
 
     <div class="results-container" id="resultsContainer">
         <div class="student-title" id="displayStudentName"></div>
-        
         <div class="section-header">Performance Tasks</div>
-        <div class="grade-row">
-            <span class="grade-label">💻 Disassembling</span>
-            <span class="grade-value" id="valDisassembling">--</span>
-        </div>
-        <div class="grade-row">
-            <span class="grade-label">🛠️ Assembling</span>
-            <span class="grade-value" id="valAssembling">--</span>
-        </div>
-        <div class="grade-row">
-            <span class="grade-label">❓ Questioning</span>
-            <span class="grade-value" id="valQuestioning">--</span>
-        </div>
-
+        <div class="grade-row"><span class="grade-label">💻 Disassembling</span><span class="grade-value" id="valDisassembling">--</span></div>
+        <div class="grade-row"><span class="grade-label">🛠️ Assembling</span><span class="grade-value" id="valAssembling">--</span></div>
+        <div class="grade-row"><span class="grade-label">❓ Questioning</span><span class="grade-value" id="valQuestioning">--</span></div>
         <div class="section-header">Written Assessment</div>
-        <div class="grade-row quiz-row">
-            <span class="grade-label">📝 Quiz 1</span>
-            <span class="grade-value" id="valQuiz1">--</span>
-        </div>
+        <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 1</span><span class="grade-value" id="valQuiz1">--</span></div>
     </div>
 
-    <!-- Student Leaderboards -->
     <hr class="divider">
-    
     <h2 class="top5-title">🏆 Top 5: Performance Task Average</h2>
     <ul class="top5-list" id="top5ListPT"></ul>
-
     <h2 class="top5-title">🏆 Top 5: Quiz 1 Scorers</h2>
     <ul class="top5-list" id="top5ListQuiz"></ul>
-
-    <!-- Server Rankings -->
     <hr class="divider">
-    
     <h2 class="top5-title">📊 Top Servers by Category</h2>
     <div class="server-cards">
-        <div class="server-card">
-            <div class="sc-title">💻 Disassembling</div>
-            <div class="sc-winner" id="winnerDisassembling">--</div>
-            <div class="sc-score" id="scoreDisassembling">--</div>
-        </div>
-        <div class="server-card">
-            <div class="sc-title">🛠️ Assembling</div>
-            <div class="sc-winner" id="winnerAssembling">--</div>
-            <div class="sc-score" id="scoreAssembling">--</div>
-        </div>
-        <div class="server-card">
-            <div class="sc-title">❓ Questioning</div>
-            <div class="sc-winner" id="winnerQuestioning">--</div>
-            <div class="sc-score" id="scoreQuestioning">--</div>
-        </div>
+        <div class="server-card"><div class="sc-title">💻 Disassembling</div><div class="sc-winner" id="winnerDisassembling">--</div><div class="sc-score" id="scoreDisassembling">--</div></div>
+        <div class="server-card"><div class="sc-title">🛠️ Assembling</div><div class="sc-winner" id="winnerAssembling">--</div><div class="sc-score" id="scoreAssembling">--</div></div>
+        <div class="server-card"><div class="sc-title">❓ Questioning</div><div class="sc-winner" id="winnerQuestioning">--</div><div class="sc-score" id="scoreQuestioning">--</div></div>
     </div>
-
     <h2 class="top5-title">🌐 Overall Server Ranking</h2>
     <ul class="top5-list" id="serverRankingList"></ul>
-
 </div>
 
 <script>
-    // --- Merged Student Dataset ---
     const noGrade = "No Grade / Dropped / Absent";
-    
     const studentsData = [
         {"name": "COMBOY, JOHN LOUIS D.", "disassembling": noGrade, "assembling": noGrade, "questioning": noGrade, "quiz1": 16, "highlight": true},
         {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "quiz1": 30, "highlight": true},
@@ -316,7 +107,6 @@
         {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": noGrade, "assembling": noGrade, "questioning": noGrade, "quiz1": 1, "highlight": true}
     ];
 
-    // --- Extracted Server Data from Image ---
     const serversData = [
         { name: "SERVER 1", disassembling: 92.40, assembling: 94.60, questioning: 89.80, overall: 92.27 },
         { name: "SERVER 2", disassembling: 94.25, assembling: 94.50, questioning: 87.00, overall: 91.92 },
@@ -335,115 +125,72 @@
     function populateDropdown() {
         const sortedStudents = [...studentsData].sort((a, b) => a.name.localeCompare(b.name));
         const dropdown = document.getElementById('studentSelect');
-        
         sortedStudents.forEach(student => {
             let opt = document.createElement('option');
-            opt.value = studentsData.indexOf(student);
+            // FIX: Set value to name
+            opt.value = student.name;
             opt.innerHTML = student.name;
             dropdown.appendChild(opt);
         });
     }
 
     function showGrades() {
-        const selectedIndex = document.getElementById('studentSelect').value;
+        const selectedName = document.getElementById('studentSelect').value;
         const container = document.getElementById('resultsContainer');
+        if (selectedName === "") { container.style.display = "none"; return; }
         
-        if (selectedIndex === "") {
-            container.style.display = "none";
-            return;
+        // FIX: Find student by name
+        const student = studentsData.find(s => s.name === selectedName);
+        if (student) {
+            document.getElementById('displayStudentName').innerText = student.name;
+            formatGrade('valDisassembling', student.disassembling);
+            formatGrade('valAssembling', student.assembling);
+            formatGrade('valQuestioning', student.questioning);
+            formatGrade('valQuiz1', student.quiz1);
+            container.style.display = "block";
         }
-        
-        const student = studentsData[selectedIndex];
-        
-        document.getElementById('displayStudentName').innerText = student.name;
-        formatGrade('valDisassembling', student.disassembling);
-        formatGrade('valAssembling', student.assembling);
-        formatGrade('valQuestioning', student.questioning);
-        formatGrade('valQuiz1', student.quiz1);
-        
-        container.style.display = "block";
     }
 
     function formatGrade(elementId, val) {
         const el = document.getElementById(elementId);
         if (typeof val === 'string' || val == null) {
-            el.innerText = noGrade;
-            el.className = "grade-value text-danger";
+            el.innerText = noGrade; el.className = "grade-value text-danger";
         } else {
-            el.innerText = val;
-            el.className = "grade-value";
+            el.innerText = val; el.className = "grade-value";
         }
     }
 
     function renderStudentLeaderboards() {
         const medals = ['🥇', '🥈', '🥉', '🏅', '🏅'];
-        
-        // 1. PT Top 5
         const rankedPT = studentsData
             .filter(s => typeof s.disassembling === 'number' && typeof s.assembling === 'number' && typeof s.questioning === 'number')
             .map(s => ({ name: s.name, score: ((s.disassembling + s.assembling + s.questioning) / 3).toFixed(2) }))
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 5);
-
+            .sort((a, b) => b.score - a.score).slice(0, 5);
         document.getElementById('top5ListPT').innerHTML = rankedPT.map((student, index) => `
-            <li class="top5-item">
-                <span class="rank-medal">${medals[index]}</span>
-                <span class="top5-name">${student.name}</span>
-                <span class="top5-score">${student.score}</span>
-            </li>
-        `).join('');
+            <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.score}</span></li>`).join('');
 
-        // 2. Quiz Top 5
         const rankedQuiz = studentsData
             .filter(s => typeof s.quiz1 === 'number')
-            .sort((a, b) => b.quiz1 - a.quiz1)
-            .slice(0, 5);
-            
+            .sort((a, b) => b.quiz1 - a.quiz1).slice(0, 5);
         document.getElementById('top5ListQuiz').innerHTML = rankedQuiz.map((student, index) => `
-            <li class="top5-item ${student.highlight ? 'highlight' : ''}">
-                <span class="rank-medal">${medals[index]}</span>
-                <span class="top5-name">${student.name}</span>
-                <span class="top5-score top5-score-quiz">${student.quiz1}</span>
-            </li>
-        `).join('');
+            <li class="top5-item ${student.highlight ? 'highlight' : ''}"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score top5-score-quiz">${student.quiz1}</span></li>`).join('');
     }
 
     function renderServerRankings() {
-        // --- Calculate Top Winners by Category ---
-        
-        // Find highest values
         const maxDis = Math.max(...serversData.map(s => s.disassembling));
         const maxAss = Math.max(...serversData.map(s => s.assembling));
         const maxQue = Math.max(...serversData.map(s => s.questioning));
-
-        // Get matching servers (Handles ties, like Server 2 & 6 in Disassembling)
-        const topDis = serversData.filter(s => s.disassembling === maxDis).map(s => s.name).join(" & ");
-        const topAss = serversData.filter(s => s.assembling === maxAss).map(s => s.name).join(" & ");
-        const topQue = serversData.filter(s => s.questioning === maxQue).map(s => s.name).join(" & ");
-
-        // Populate HTML for Category Winners
-        document.getElementById('winnerDisassembling').innerText = topDis;
+        document.getElementById('winnerDisassembling').innerText = serversData.filter(s => s.disassembling === maxDis).map(s => s.name).join(" & ");
         document.getElementById('scoreDisassembling').innerText = maxDis.toFixed(2);
-        
-        document.getElementById('winnerAssembling').innerText = topAss;
+        document.getElementById('winnerAssembling').innerText = serversData.filter(s => s.assembling === maxAss).map(s => s.name).join(" & ");
         document.getElementById('scoreAssembling').innerText = maxAss.toFixed(2);
-
-        document.getElementById('winnerQuestioning').innerText = topQue;
+        document.getElementById('winnerQuestioning').innerText = serversData.filter(s => s.questioning === maxQue).map(s => s.name).join(" & ");
         document.getElementById('scoreQuestioning').innerText = maxQue.toFixed(2);
-
-        // --- Calculate Overall Rankings ---
         const rankedServers = [...serversData].sort((a, b) => b.overall - a.overall);
         const serverMedals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣'];
-
         document.getElementById('serverRankingList').innerHTML = rankedServers.map((server, index) => `
-            <li class="top5-item">
-                <span class="rank-medal" style="font-size: 16px;">${serverMedals[index]}</span>
-                <span class="top5-name">${server.name}</span>
-                <span class="top5-score" style="background:#c6f6d5; color:#22543d;">${server.overall.toFixed(2)}</span>
-            </li>
-        `).join('');
+            <li class="top5-item"><span class="rank-medal" style="font-size: 16px;">${serverMedals[index]}</span><span class="top5-name">${server.name}</span><span class="top5-score" style="background:#c6f6d5; color:#22543d;">${server.overall.toFixed(2)}</span></li>`).join('');
     }
 </script>
-
 </body>
 </html>
