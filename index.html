@@ -35,7 +35,7 @@
 
 <div class="card">
     <h1>12-VENUS Results Portal</h1>
-    <div class="subtitle">Performance Tasks & Quizzes</div>
+    <div class="subtitle">Performance Tasks, Quizzes & Exams</div>
     
     <label for="studentSelect">Select Student Name:</label>
     <select id="studentSelect" onchange="showGrades()">
@@ -49,8 +49,9 @@
         <div class="grade-row"><span class="grade-label">🛠️ Assembling</span><span class="grade-value" id="valAssembling">--</span></div>
         <div class="grade-row"><span class="grade-label">❓ Questioning</span><span class="grade-value" id="valQuestioning">--</span></div>
         <div class="grade-row"><span class="grade-label">💾 Diskpart</span><span class="grade-value" id="valDiskpart">--</span></div>
-        <div class="section-header">Written Assessment</div>
+        <div class="section-header">Written Assessments</div>
         <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 1</span><span class="grade-value" id="valQuiz1">--</span></div>
+        <div class="grade-row quiz-row"><span class="grade-label">📄 Summative 1</span><span class="grade-value" id="valSummative1">--</span></div>
     </div>
 
     <hr class="divider">
@@ -59,6 +60,9 @@
 
     <h2 class="top5-title">🏆 Top 5: Quiz 1 Scorers</h2>
     <ul class="top5-list" id="top5ListQuiz"></ul>
+
+    <h2 class="top5-title">🏆 Top 5: Summative 1 Scorers</h2>
+    <ul class="top5-list" id="top5ListSummative1"></ul>
 
     <h2 class="top5-title">📊 Top Servers by Category</h2>
     <div class="server-grid">
@@ -84,32 +88,33 @@
     ];
 
     const studentsData = [
-        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 23},
-        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "quiz1": 25},
-        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "quiz1": 24},
-        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21},
-        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "quiz1": 30},
-        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "quiz1": 18},
-        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "quiz1": 21},
-        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "quiz1": null},
-        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "quiz1": 25},
-        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": 1},
-        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "quiz1": 18},
-        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "quiz1": 11},
-        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "quiz1": 30},
-        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "quiz1": 21},
-        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "quiz1": 16},
-        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "quiz1": 26},
-        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "quiz1": 20},
-        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": null},
-        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "quiz1": 25},
-        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "quiz1": 17},
-        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "quiz1": null},
-        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21},
-        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "quiz1": 22},
-        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": null, "quiz1": 29},
-        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": null, "quiz1": 20},
-        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": null, "quiz1": null}
+        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 23, "summative1": 25},
+        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "quiz1": 25, "summative1": 26},
+        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "quiz1": 24, "summative1": 24},
+        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21, "summative1": 19},
+        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "quiz1": 30, "summative1": 30},
+        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "quiz1": 18, "summative1": 27},
+        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "quiz1": 21, "summative1": null},
+        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "quiz1": null, "summative1": 19},
+        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "quiz1": 25, "summative1": 25},
+        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": 1, "summative1": null},
+        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "quiz1": 18, "summative1": 14},
+        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "quiz1": 11, "summative1": 18},
+        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "quiz1": 30, "summative1": 28},
+        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "quiz1": 21, "summative1": 23},
+        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "quiz1": 16, "summative1": 22},
+        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "quiz1": 26, "summative1": 28},
+        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "quiz1": 20, "summative1": 16},
+        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": null, "summative1": 19},
+        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "quiz1": 25, "summative1": 25},
+        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "quiz1": 17, "summative1": 14},
+        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "quiz1": null, "summative1": 16},
+        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21, "summative1": null},
+        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "quiz1": 22, "summative1": 17},
+        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": null, "quiz1": 29, "summative1": 28},
+        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": null, "quiz1": 20, "summative1": 18},
+        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": null, "quiz1": null, "summative1": 18},
+        {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "diskpart": 91, "quiz1": 8, "summative1": 28}
     ];
 
     window.onload = function() {
@@ -142,6 +147,7 @@
             formatGrade('valQuestioning', student.questioning);
             formatGrade('valDiskpart', student.diskpart);
             formatGrade('valQuiz1', student.quiz1);
+            formatGrade('valSummative1', student.summative1);
             container.style.display = "block";
         }
     }
@@ -164,19 +170,17 @@
         // Calculate PT Avg safely
         const rankedPT = studentsData
             .filter(s => s.disassembling && s.assembling && s.questioning && s.diskpart) 
-
-// 2. The Calculation
-.map(s => ({ 
-    name: s.name, 
-    score: ((s.disassembling + s.assembling + s.questioning + s.diskpart) / 4).toFixed(2) 
-}))
+            .map(s => ({
+                name: s.name,
+                score: ((s.disassembling + s.assembling + s.questioning + s.diskpart) / 4).toFixed(2)
+            }))
             .sort((a, b) => b.score - a.score)
             .slice(0, 5);
 
         document.getElementById('top5ListPT').innerHTML = rankedPT.map((student, index) => `
             <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.score}</span></li>`).join('');
 
-        // Calculate Quiz ranking
+        // Calculate Quiz 1 ranking
         const rankedQuiz = studentsData
             .filter(s => s.quiz1 && s.quiz1 > 0)
             .sort((a, b) => b.quiz1 - a.quiz1)
@@ -184,6 +188,15 @@
 
         document.getElementById('top5ListQuiz').innerHTML = rankedQuiz.map((student, index) => `
             <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.quiz1}</span></li>`).join('');
+            
+        // Calculate Summative 1 ranking
+        const rankedSummative1 = studentsData
+            .filter(s => s.summative1 && s.summative1 > 0)
+            .sort((a, b) => b.summative1 - a.summative1)
+            .slice(0, 5);
+
+        document.getElementById('top5ListSummative1').innerHTML = rankedSummative1.map((student, index) => `
+            <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.summative1}</span></li>`).join('');
     }
 
     function renderServerRankings() {
