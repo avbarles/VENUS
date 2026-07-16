@@ -49,17 +49,29 @@
         <div class="grade-row"><span class="grade-label">🛠️ Assembling</span><span class="grade-value" id="valAssembling">--</span></div>
         <div class="grade-row"><span class="grade-label">❓ Questioning</span><span class="grade-value" id="valQuestioning">--</span></div>
         <div class="grade-row"><span class="grade-label">💾 Diskpart</span><span class="grade-value" id="valDiskpart">--</span></div>
+        <div class="grade-row"><span class="grade-label">📀 Creating Bootable</span><span class="grade-value" id="valBootable">--</span></div>
         <div class="section-header">Written Assessments</div>
         <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 1</span><span class="grade-value" id="valQuiz1">--</span></div>
+        <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 2</span><span class="grade-value" id="valQuiz2">--</span></div>
+        <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 3</span><span class="grade-value" id="valQuiz3">--</span></div>
         <div class="grade-row quiz-row"><span class="grade-label">📄 Summative 1</span><span class="grade-value" id="valSummative1">--</span></div>
     </div>
 
     <hr class="divider">
-    <h2 class="top5-title">🏆 Top 5: PT Average</h2>
+    <h2 class="top5-title">🏆 Top 5: Overall PT Average</h2>
     <ul class="top5-list" id="top5ListPT"></ul>
+
+    <h2 class="top5-title">🏆 Top 5: Creating Bootable</h2>
+    <ul class="top5-list" id="top5ListBootable"></ul>
 
     <h2 class="top5-title">🏆 Top 5: Quiz 1 Scorers</h2>
     <ul class="top5-list" id="top5ListQuiz"></ul>
+
+    <h2 class="top5-title">🏆 Top 5: Quiz 2 Scorers</h2>
+    <ul class="top5-list" id="top5ListQuiz2"></ul>
+
+    <h2 class="top5-title">🏆 Top 5: Quiz 3 Scorers</h2>
+    <ul class="top5-list" id="top5ListQuiz3"></ul>
 
     <h2 class="top5-title">🏆 Top 5: Summative 1 Scorers</h2>
     <ul class="top5-list" id="top5ListSummative1"></ul>
@@ -70,6 +82,7 @@
         <div class="server-box"><div class="server-label">ASSEMBLING</div><div class="server-val" id="scoreAssembling">--</div><div id="winnerAssembling" style="font-size:10px;"></div></div>
         <div class="server-box"><div class="server-label">QUESTIONING</div><div class="server-val" id="scoreQuestioning">--</div><div id="winnerQuestioning" style="font-size:10px;"></div></div>
         <div class="server-box"><div class="server-label">DISKPART</div><div class="server-val" id="scoreDiskpart">--</div><div id="winnerDiskpart" style="font-size:10px;"></div></div>
+        <div class="server-box" style="grid-column: span 2;"><div class="server-label">CREATING BOOTABLE</div><div class="server-val" id="scoreBootable">--</div><div id="winnerBootable" style="font-size:10px;"></div></div>
     </div>
 
     <h2 class="top5-title">🌐 Overall Server Ranking</h2>
@@ -77,44 +90,45 @@
 </div>
 
 <script>
-    // Use null for empty values instead of strings
+    // Server data updated to include "creatingBootable" and recalculated overalls
     const serversData = [
-        {name: "SERVER 1", disassembling: 92.40, assembling: 94.6, questioning: 89.80, diskpart: 92.27, overall: 92.27},
-        {name: "SERVER 2", disassembling: 94.25, assembling: 94.5, questioning: 87.0, diskpart: 93.50, overall: 92.31},
-        {name: "SERVER 3", disassembling: 92.25, assembling: 90.75, questioning: 86.75, diskpart: 90.88, overall: 90.88},
-        {name: "SERVER 4", disassembling: 91.50, assembling: 92.50, questioning: 83.50, diskpart: 89.71, overall: 89.71},
-        {name: "SERVER 5", disassembling: 92.0, assembling: 94.25, questioning: 87.0, diskpart: 91.79, overall: 91.79},
-        {name: "SERVER 6", disassembling: 94.25, assembling: 94.0, questioning: 86.75, diskpart: 91.58, overall: 91.58}
+        {name: "SERVER 1", disassembling: 92.40, assembling: 94.6, questioning: 89.80, diskpart: 92.27, creatingBootable: 88.5, overall: 91.51},
+        {name: "SERVER 2", disassembling: 94.25, assembling: 94.5, questioning: 87.0, diskpart: 93.50, creatingBootable: 90.0, overall: 91.85},
+        {name: "SERVER 3", disassembling: 92.25, assembling: 90.75, questioning: 86.75, diskpart: 90.88, creatingBootable: 86.5, overall: 89.42},
+        {name: "SERVER 4", disassembling: 91.50, assembling: 92.50, questioning: 83.50, diskpart: 89.71, creatingBootable: 84.0, overall: 88.24},
+        {name: "SERVER 5", disassembling: 92.0, assembling: 94.25, questioning: 87.0, diskpart: 91.79, creatingBootable: 92.5, overall: 91.50},
+        {name: "SERVER 6", disassembling: 94.25, assembling: 94.0, questioning: 86.75, diskpart: 91.58, creatingBootable: 89.0, overall: 91.11}
     ];
 
+    // Updated student list combining old and new data from image_104ca5.png
     const studentsData = [
-        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 23, "summative1": 25},
-        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "quiz1": 25, "summative1": 26},
-        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "quiz1": 24, "summative1": 24},
-        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21, "summative1": 19},
-        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "quiz1": 30, "summative1": 30},
-        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "quiz1": 18, "summative1": 27},
-        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "quiz1": 21, "summative1": null},
-        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "quiz1": null, "summative1": 19},
-        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "quiz1": 25, "summative1": 25},
-        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": 1, "summative1": null},
-        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "quiz1": 18, "summative1": 14},
-        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "quiz1": 11, "summative1": 18},
-        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "quiz1": 30, "summative1": 28},
-        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "quiz1": 21, "summative1": 23},
-        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "quiz1": 16, "summative1": 22},
-        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "quiz1": 26, "summative1": 28},
-        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "quiz1": 20, "summative1": 16},
-        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "quiz1": null, "summative1": 19},
-        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "quiz1": 25, "summative1": 25},
-        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "quiz1": 17, "summative1": 14},
-        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "quiz1": null, "summative1": 16},
-        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "quiz1": 21, "summative1": null},
-        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "quiz1": 22, "summative1": 17},
-        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 93, "quiz1": 29, "summative1": 28},
-        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": 92, "quiz1": 20, "summative1": 18},
-        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": 88, "quiz1": null, "summative1": 18},
-        {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "diskpart": 91, "quiz1": 8, "summative1": 28}
+        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 77, "quiz1": 23, "summative1": 25, "quiz2": 9, "quiz3": 10},
+        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "creatingBootable": 90, "quiz1": 25, "summative1": 26, "quiz2": 9, "quiz3": 3},
+        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "creatingBootable": 95, "quiz1": 24, "summative1": 24, "quiz2": 9, "quiz3": 4},
+        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 80, "quiz1": 21, "summative1": 19, "quiz2": null, "quiz3": null},
+        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "creatingBootable": 90, "quiz1": 30, "summative1": 30, "quiz2": 9, "quiz3": 7},
+        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "creatingBootable": 88, "quiz1": 18, "summative1": 27, "quiz2": 9, "quiz3": 8},
+        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "creatingBootable": 83, "quiz1": 21, "summative1": null, "quiz2": 6, "quiz3": 3},
+        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "creatingBootable": 88, "quiz1": null, "summative1": 19, "quiz2": 4, "quiz3": 1},
+        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "creatingBootable": 90, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 8},
+        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": null, "quiz1": 1, "summative1": null, "quiz2": null, "quiz3": null},
+        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "creatingBootable": 82, "quiz1": 18, "summative1": 14, "quiz2": 5, "quiz3": 14},
+        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "creatingBootable": 85, "quiz1": 11, "summative1": 18, "quiz2": 5, "quiz3": 5},
+        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "creatingBootable": 95, "quiz1": 30, "summative1": 28, "quiz2": 10, "quiz3": 9},
+        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "creatingBootable": 83, "quiz1": 21, "summative1": 23, "quiz2": 6, "quiz3": 3},
+        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "creatingBootable": 95, "quiz1": 16, "summative1": 22, "quiz2": 6, "quiz3": 14},
+        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "creatingBootable": 95, "quiz1": 26, "summative1": 28, "quiz2": 6, "quiz3": 14},
+        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "creatingBootable": 85, "quiz1": 20, "summative1": 16, "quiz2": 4, "quiz3": 10},
+        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": 82, "quiz1": null, "summative1": 19, "quiz2": 6, "quiz3": 8},
+        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "creatingBootable": 82, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 4},
+        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "creatingBootable": 83, "quiz1": 17, "summative1": 14, "quiz2": 8, "quiz3": 8},
+        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "creatingBootable": null, "quiz1": null, "summative1": 16, "quiz2": null, "quiz3": null},
+        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 70, "quiz1": 21, "summative1": null, "quiz2": 8, "quiz3": 6},
+        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "creatingBootable": 92, "quiz1": 22, "summative1": 17, "quiz2": 4, "quiz3": 8},
+        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 93.00, "creatingBootable": 88, "quiz1": 29, "summative1": 28, "quiz2": null, "quiz3": null},
+        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": 92.00, "creatingBootable": 90, "quiz1": 20, "summative1": 18, "quiz2": 7, "quiz3": 2},
+        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": 88.00, "creatingBootable": 85, "quiz1": null, "summative1": 18, "quiz2": 4, "quiz3": 9},
+        {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "diskpart": 91.00, "creatingBootable": 92, "quiz1": 8, "summative1": 28, "quiz2": 5, "quiz3": 3}
     ];
 
     window.onload = function() {
@@ -146,7 +160,10 @@
             formatGrade('valAssembling', student.assembling);
             formatGrade('valQuestioning', student.questioning);
             formatGrade('valDiskpart', student.diskpart);
+            formatGrade('valBootable', student.creatingBootable);
             formatGrade('valQuiz1', student.quiz1);
+            formatGrade('valQuiz2', student.quiz2);
+            formatGrade('valQuiz3', student.quiz3);
             formatGrade('valSummative1', student.summative1);
             container.style.display = "block";
         }
@@ -164,15 +181,24 @@
         }
     }
 
+    // Helper to generate list items
+    function getRankedHTML(data, field, medals) {
+        return data.filter(s => s[field] && s[field] > 0)
+                   .sort((a, b) => b[field] - a[field])
+                   .slice(0, 5)
+                   .map((student, index) => `
+            <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student[field]}</span></li>`).join('');
+    }
+
     function renderStudentLeaderboards() {
         const medals = ['🥇', '🥈', '🥉', '🏅', '🏅'];
         
-        // Calculate PT Avg safely
+        // Calculate updated PT Avg securely across 5 Tasks now
         const rankedPT = studentsData
-            .filter(s => s.disassembling && s.assembling && s.questioning && s.diskpart) 
+            .filter(s => s.disassembling && s.assembling && s.questioning && s.diskpart && s.creatingBootable) 
             .map(s => ({
                 name: s.name,
-                score: ((s.disassembling + s.assembling + s.questioning + s.diskpart) / 4).toFixed(2)
+                score: ((s.disassembling + s.assembling + s.questioning + s.diskpart + s.creatingBootable) / 5).toFixed(2)
             }))
             .sort((a, b) => b.score - a.score)
             .slice(0, 5);
@@ -180,23 +206,11 @@
         document.getElementById('top5ListPT').innerHTML = rankedPT.map((student, index) => `
             <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.score}</span></li>`).join('');
 
-        // Calculate Quiz 1 ranking
-        const rankedQuiz = studentsData
-            .filter(s => s.quiz1 && s.quiz1 > 0)
-            .sort((a, b) => b.quiz1 - a.quiz1)
-            .slice(0, 5);
-
-        document.getElementById('top5ListQuiz').innerHTML = rankedQuiz.map((student, index) => `
-            <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.quiz1}</span></li>`).join('');
-            
-        // Calculate Summative 1 ranking
-        const rankedSummative1 = studentsData
-            .filter(s => s.summative1 && s.summative1 > 0)
-            .sort((a, b) => b.summative1 - a.summative1)
-            .slice(0, 5);
-
-        document.getElementById('top5ListSummative1').innerHTML = rankedSummative1.map((student, index) => `
-            <li class="top5-item"><span class="rank-medal">${medals[index]}</span><span class="top5-name">${student.name}</span><span class="top5-score">${student.summative1}</span></li>`).join('');
+        document.getElementById('top5ListBootable').innerHTML = getRankedHTML(studentsData, 'creatingBootable', medals);
+        document.getElementById('top5ListQuiz').innerHTML = getRankedHTML(studentsData, 'quiz1', medals);
+        document.getElementById('top5ListQuiz2').innerHTML = getRankedHTML(studentsData, 'quiz2', medals);
+        document.getElementById('top5ListQuiz3').innerHTML = getRankedHTML(studentsData, 'quiz3', medals);
+        document.getElementById('top5ListSummative1').innerHTML = getRankedHTML(studentsData, 'summative1', medals);
     }
 
     function renderServerRankings() {
@@ -204,6 +218,7 @@
         const maxAss = Math.max(...serversData.map(s => s.assembling));
         const maxQue = Math.max(...serversData.map(s => s.questioning));
         const maxDisk = Math.max(...serversData.map(s => s.diskpart));
+        const maxBoot = Math.max(...serversData.map(s => s.creatingBootable));
         
         document.getElementById('winnerDisassembling').innerText = serversData.filter(s => s.disassembling === maxDis).map(s => s.name).join(", ");
         document.getElementById('scoreDisassembling').innerText = maxDis.toFixed(2);
@@ -216,6 +231,9 @@
 
         document.getElementById('winnerDiskpart').innerText = serversData.filter(s => s.diskpart === maxDisk).map(s => s.name).join(", ");
         document.getElementById('scoreDiskpart').innerText = maxDisk.toFixed(2);
+
+        document.getElementById('winnerBootable').innerText = serversData.filter(s => s.creatingBootable === maxBoot).map(s => s.name).join(", ");
+        document.getElementById('scoreBootable').innerText = maxBoot.toFixed(2);
         
         const rankedServers = [...serversData].sort((a, b) => b.overall - a.overall);
         const serverMedals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣'];
