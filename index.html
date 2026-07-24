@@ -17,6 +17,7 @@
         .section-header { font-size: 14px; text-transform: uppercase; font-weight: 700; color: #718096; margin: 20px 0 10px 0; text-align: center; }
         .grade-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: #fffaf0; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #dd6b20; }
         .grade-row.quiz-row { background: #f0f4ff; border-left-color: #3182ce; }
+        .grade-row.avg-row { background: #fefcbf; border-left-color: #d69e2e; font-weight: bold; margin-top: 15px; }
         .grade-value { font-weight: 700; font-size: 18px; color: #2d3748; }
         .text-danger { color: #e53e3e; font-size: 14px; font-style: italic; }
         .divider { border: 0; height: 1px; background: #e2e8f0; margin: 35px 0 25px 0; }
@@ -44,6 +45,7 @@
 
     <div class="results-container" id="resultsContainer">
         <div class="student-title" id="displayStudentName"></div>
+        
         <div class="section-header">Performance Tasks</div>
         <div class="grade-row"><span class="grade-label">💻 Disassembling</span><span class="grade-value" id="valDisassembling">--</span></div>
         <div class="grade-row"><span class="grade-label">🛠️ Assembling</span><span class="grade-value" id="valAssembling">--</span></div>
@@ -51,6 +53,8 @@
         <div class="grade-row"><span class="grade-label">💾 Diskpart</span><span class="grade-value" id="valDiskpart">--</span></div>
         <div class="grade-row"><span class="grade-label">📀 Creating Bootable</span><span class="grade-value" id="valBootable">--</span></div>
         <div class="grade-row"><span class="grade-label">🖥️ Install OS</span><span class="grade-value" id="valInstallOS">--</span></div>
+        <div class="grade-row avg-row"><span class="grade-label">⭐ Overall PT Average</span><span class="grade-value" id="valPTAverage">--</span></div>
+        
         <div class="section-header">Written Assessments</div>
         <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 1</span><span class="grade-value" id="valQuiz1">--</span></div>
         <div class="grade-row quiz-row"><span class="grade-label">📝 Quiz 2</span><span class="grade-value" id="valQuiz2">--</span></div>
@@ -167,6 +171,24 @@
             formatGrade('valDiskpart', student.diskpart);
             formatGrade('valBootable', student.creatingBootable);
             formatGrade('valInstallOS', student.installOS);
+            
+            // Calculate and display individual student PT Average
+            const ptScores = [student.disassembling, student.assembling, student.questioning, student.diskpart, student.creatingBootable, student.installOS];
+            const validPT = ptScores.filter(score => score !== null && score !== undefined && score > 0);
+            
+            const avgEl = document.getElementById('valPTAverage');
+            if (validPT.length === 6) {
+                const ptAvg = (validPT.reduce((a, b) => a + b, 0) / 6).toFixed(2);
+                avgEl.innerText = ptAvg;
+                avgEl.className = "grade-value";
+            } else if (validPT.length > 0) {
+                const ptAvg = (validPT.reduce((a, b) => a + b, 0) / validPT.length).toFixed(2);
+                avgEl.innerText = `${ptAvg} (${validPT.length}/6 Tasks)`;
+                avgEl.className = "grade-value text-danger";
+            } else {
+                formatGrade('valPTAverage', null);
+            }
+
             formatGrade('valQuiz1', student.quiz1);
             formatGrade('valQuiz2', student.quiz2);
             formatGrade('valQuiz3', student.quiz3);
@@ -199,7 +221,7 @@
     function renderStudentLeaderboards() {
         const medals = ['🥇', '🥈', '🥉', '🏅', '🏅'];
         
-        // Calculate updated PT Avg securely across all 6 Tasks now
+        // Calculate updated PT Avg securely across all 6 Tasks
         const rankedPT = studentsData
             .filter(s => s.disassembling && s.assembling && s.questioning && s.diskpart && s.creatingBootable && s.installOS) 
             .map(s => ({
