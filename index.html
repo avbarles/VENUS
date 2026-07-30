@@ -109,35 +109,35 @@
         {name: "SERVER 6", disassembling: 94.25, assembling: 94.0, questioning: 86.75, diskpart: 91.58, creatingBootable: 89.0, installOS: 70.0, overall: 87.60}
     ];
 
-    // Student list updated with installOS: 70 for all students
+    // Student list updated with installOS dynamically sourced from external image data
     const studentsData = [
-        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 77, "installOS": 70, "quiz1": 23, "summative1": 25, "quiz2": 9, "quiz3": 10},
-        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "creatingBootable": 90, "installOS": 70, "quiz1": 25, "summative1": 26, "quiz2": 9, "quiz3": 3},
-        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "creatingBootable": 95, "installOS": 70, "quiz1": 24, "summative1": 24, "quiz2": 9, "quiz3": 4},
-        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 80, "installOS": 70, "quiz1": 21, "summative1": 19, "quiz2": null, "quiz3": null},
-        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "creatingBootable": 90, "installOS": 70, "quiz1": 30, "summative1": 30, "quiz2": 9, "quiz3": 7},
-        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "creatingBootable": 88, "installOS": 70, "quiz1": 18, "summative1": 27, "quiz2": 9, "quiz3": 8},
-        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "creatingBootable": 83, "installOS": 70, "quiz1": 21, "summative1": null, "quiz2": 6, "quiz3": 3},
-        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "creatingBootable": 88, "installOS": 70, "quiz1": null, "summative1": 19, "quiz2": 4, "quiz3": 1},
-        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "creatingBootable": 90, "installOS": 70, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 8},
-        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": null, "installOS": 70, "quiz1": 1, "summative1": null, "quiz2": null, "quiz3": null},
-        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "creatingBootable": 82, "installOS": 70, "quiz1": 18, "summative1": 14, "quiz2": 5, "quiz3": 14},
-        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "creatingBootable": 85, "installOS": 70, "quiz1": 11, "summative1": 18, "quiz2": 5, "quiz3": 5},
-        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "creatingBootable": 95, "installOS": 70, "quiz1": 30, "summative1": 28, "quiz2": 10, "quiz3": 9},
-        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "creatingBootable": 83, "installOS": 70, "quiz1": 21, "summative1": 23, "quiz2": 6, "quiz3": 3},
-        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "creatingBootable": 95, "installOS": 70, "quiz1": 16, "summative1": 22, "quiz2": 6, "quiz3": 14},
-        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "creatingBootable": 95, "installOS": 70, "quiz1": 26, "summative1": 28, "quiz2": 6, "quiz3": 14},
-        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "creatingBootable": 85, "installOS": 70, "quiz1": 20, "summative1": 16, "quiz2": 4, "quiz3": 10},
-        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": 82, "installOS": 70, "quiz1": null, "summative1": 19, "quiz2": 6, "quiz3": 8},
-        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "creatingBootable": 82, "installOS": 70, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 4},
-        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "creatingBootable": 83, "installOS": 70, "quiz1": 17, "summative1": 14, "quiz2": 8, "quiz3": 8},
-        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "creatingBootable": null, "installOS": 70, "quiz1": null, "summative1": 16, "quiz2": null, "quiz3": null},
-        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 70, "installOS": 70, "quiz1": 21, "summative1": null, "quiz2": 8, "quiz3": 6},
-        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "creatingBootable": 92, "installOS": 70, "quiz1": 22, "summative1": 17, "quiz2": 4, "quiz3": 8},
-        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 93.00, "creatingBootable": 88, "installOS": 70, "quiz1": 29, "summative1": 28, "quiz2": null, "quiz3": null},
-        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": 92.00, "creatingBootable": 90, "installOS": 70, "quiz1": 20, "summative1": 18, "quiz2": 7, "quiz3": 2},
-        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": 88.00, "creatingBootable": 85, "installOS": 70, "quiz1": null, "summative1": 18, "quiz2": 4, "quiz3": 9},
-        {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "diskpart": 91.00, "creatingBootable": 92, "installOS": 70, "quiz1": 8, "summative1": 28, "quiz2": 5, "quiz3": 3}
+        {"name": "CANTUNGAN, CLARENCE N.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 77, "installOS": null, "quiz1": 23, "summative1": 25, "quiz2": 9, "quiz3": 10},
+        {"name": "JUAYANG, JOHN REYNALD M.", "disassembling": 94, "assembling": 95, "questioning": 88, "diskpart": 92.33, "creatingBootable": 90, "installOS": 95, "quiz1": 25, "summative1": 26, "quiz2": 9, "quiz3": 3},
+        {"name": "PALACIOS, CHRISTIAN R.", "disassembling": 92, "assembling": 93, "questioning": 92, "diskpart": 92.33, "creatingBootable": 95, "installOS": 95, "quiz1": 24, "summative1": 24, "quiz2": 9, "quiz3": 4},
+        {"name": "DIMACALE, JOHN CHRISTIAN RAMOS", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 80, "installOS": 87, "quiz1": 21, "summative1": 19, "quiz2": null, "quiz3": null},
+        {"name": "SULAPAS, THANJIE R.", "disassembling": 90, "assembling": 95, "questioning": 93, "diskpart": 93.00, "creatingBootable": 90, "installOS": 92, "quiz1": 30, "summative1": 30, "quiz2": 9, "quiz3": 7},
+        {"name": "BADARAN, RONALD B.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 95.00, "creatingBootable": 88, "installOS": 90, "quiz1": 18, "summative1": 27, "quiz2": 9, "quiz3": 8},
+        {"name": "BENTOY, JAVIN M.", "disassembling": 94, "assembling": 95, "questioning": 85, "diskpart": 93.00, "creatingBootable": 83, "installOS": 92, "quiz1": 21, "summative1": null, "quiz2": 6, "quiz3": 3},
+        {"name": "CATASON, BRYAN D.", "disassembling": 95, "assembling": 93, "questioning": 83, "diskpart": 93.00, "creatingBootable": 88, "installOS": 87, "quiz1": null, "summative1": 19, "quiz2": 4, "quiz3": 1},
+        {"name": "VERANO, JHON MARK G.", "disassembling": 95, "assembling": 95, "questioning": 92, "diskpart": 93.00, "creatingBootable": 90, "installOS": null, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 8},
+        {"name": "CRISOSTOMO, MARC LEANDER P.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": null, "installOS": null, "quiz1": 1, "summative1": null, "quiz2": null, "quiz3": null},
+        {"name": "DUJUA", "disassembling": 90, "assembling": 80, "questioning": 80, "diskpart": 93.00, "creatingBootable": 82, "installOS": null, "quiz1": 18, "summative1": 14, "quiz2": 5, "quiz3": 14},
+        {"name": "REMOTING, JONATHAN JR. A.", "disassembling": 93, "assembling": 93, "questioning": 85, "diskpart": 95.00, "creatingBootable": 85, "installOS": null, "quiz1": 11, "summative1": 18, "quiz2": 5, "quiz3": 5},
+        {"name": "SISON, CARLOS MIGUEL T.", "disassembling": 93, "assembling": 95, "questioning": 95, "diskpart": 95.00, "creatingBootable": 95, "installOS": 95, "quiz1": 30, "summative1": 28, "quiz2": 10, "quiz3": 9},
+        {"name": "BURIL, JASON B.", "disassembling": 93, "assembling": 95, "questioning": 87, "diskpart": 92.00, "creatingBootable": 83, "installOS": null, "quiz1": 21, "summative1": 23, "quiz2": 6, "quiz3": 3},
+        {"name": "COMBOY, JOHN LOUIS D.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": 88.00, "creatingBootable": 95, "installOS": null, "quiz1": 16, "summative1": 22, "quiz2": 6, "quiz3": 14},
+        {"name": "MENDOZA, ABIGAIL A.", "disassembling": 93, "assembling": 92, "questioning": 87, "diskpart": 95.00, "creatingBootable": 95, "installOS": 92, "quiz1": 26, "summative1": 28, "quiz2": 6, "quiz3": 14},
+        {"name": "CARDINAL, CHRISTIAN MARK M.", "disassembling": 90, "assembling": 93, "questioning": 80, "diskpart": null, "creatingBootable": 85, "installOS": 80, "quiz1": 20, "summative1": 16, "quiz2": 4, "quiz3": 10},
+        {"name": "ESCARET, MJ B.", "disassembling": null, "assembling": null, "questioning": null, "diskpart": null, "creatingBootable": 82, "installOS": 95, "quiz1": null, "summative1": 19, "quiz2": 6, "quiz3": 8},
+        {"name": "LAGO, JUSTIN F.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 95.00, "creatingBootable": 82, "installOS": null, "quiz1": 25, "summative1": 25, "quiz2": 9, "quiz3": 4},
+        {"name": "CUARTO, JAMES JARRED G.", "disassembling": 90, "assembling": 95, "questioning": 82, "diskpart": 95.00, "creatingBootable": 83, "installOS": 90, "quiz1": 17, "summative1": 14, "quiz2": 8, "quiz3": 8},
+        {"name": "DOTON, GLENZY D.", "disassembling": 90, "assembling": 94, "questioning": 88, "diskpart": null, "creatingBootable": null, "installOS": null, "quiz1": null, "summative1": 16, "quiz2": null, "quiz3": null},
+        {"name": "IGLEA, JAYDEN LINKURT C.", "disassembling": 93, "assembling": 95, "questioning": 88, "diskpart": 92.00, "creatingBootable": 70, "installOS": null, "quiz1": 21, "summative1": null, "quiz2": 8, "quiz3": 6},
+        {"name": "ESORENIA, NICO M.", "disassembling": 92, "assembling": 95, "questioning": 87, "diskpart": 90.00, "creatingBootable": 92, "installOS": 84, "quiz1": 22, "summative1": 17, "quiz2": 4, "quiz3": 8},
+        {"name": "OBRERO, RAIYYAN JANNAH R.", "disassembling": 95, "assembling": 93, "questioning": 90, "diskpart": 93.00, "creatingBootable": 88, "installOS": null, "quiz1": 29, "summative1": 28, "quiz2": null, "quiz3": null},
+        {"name": "BARNUEVO, JHON WINDEL C.", "disassembling": 95, "assembling": 95, "questioning": 85, "diskpart": 92.00, "creatingBootable": 90, "installOS": 85, "quiz1": 20, "summative1": 18, "quiz2": 7, "quiz3": 2},
+        {"name": "CADUNGON, RHINO JOHN M.", "disassembling": 95, "assembling": 93, "questioning": 85, "diskpart": 88.00, "creatingBootable": 85, "installOS": null, "quiz1": null, "summative1": 18, "quiz2": 4, "quiz3": 9},
+        {"name": "SHAHRIN, OMAR BIN", "disassembling": 93, "assembling": 95, "questioning": 92, "diskpart": 91.00, "creatingBootable": 92, "installOS": 85, "quiz1": 8, "summative1": 28, "quiz2": 5, "quiz3": 3}
     ];
 
     window.onload = function() {
